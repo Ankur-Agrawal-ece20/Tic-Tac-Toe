@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="animate()">
+
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Tic-Tac-Toe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" onclick="findscore()"
+                            style="margin-right:auto;">Scores</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Game Options
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" onclick="changetoone()" href="#">One player</a></li>
+                            <li><a class="dropdown-item" onclick="changetotwo()" href="#">Two player</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" onclick="reloadnow()" href="#">Reload Game</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="openrate()" href="#">Rate Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="Starting">
+        <div id="fill1"></div>
+        <div style="align-items: center;justify-content: center;">
+            <span id="startname">Tic-Tac-Toe</span>
+        </div>
+        <div id="fill2"></div>
+        <div id="choosetext">
+            Choose Player Type:
+            <div id="choose" class="btn-group" role="group" aria-label="Basic example">
+                <button onclick="choosecomp()" type="button" class="btn btn-warning">Computer</button>
+                <button onclick="choose2play()" type="button" class="btn btn-info">2Player</button>
+            </div>
+        </div>
+
+        <div id="extra1">
+            Who will play first?
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button id="play1" onclick="p1start()" type="button" class="btn btn-danger">Player</button>
+                <button id="play2" onclick="p2start()" type="button" class="btn btn-primary">Computer</button>
+            </div>
+        </div>
+
+        <div id="extra2">
+            Choice of first player?
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                <button type="button" onclick="startX()" class="btn btn-danger">X</button>
+                <button type="button" onclick="startY()" class="btn btn-primary">O</button>
+            </div>
+        </div>
+
+        <div style="color: white;;margin-left:10vw;font-size: 3vw;margin-top: 1vw;">Your game is loading....</div>
+        <div id="bar" class="progress">
+            <div id="progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div id="startbutton" class="d-grid gap-2">
+            <button class="btn btn-primary" onclick="startinggame()" type="button">Start Game</button>
+        </div>
+    </div>
+    <div id="Gameishere">
+        <div id="playernotchoosed" class="alert alert-dark" role="alert">
+            <strong>Not choosed who will start!</strong> Default: Player1
+        </div>
+        <div id="ratenow" class="input-group mb-3">
+            <div id="resizerate" class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                <label class="btn btn-outline-warning" for="btncheck1">&#9733</label>
+                <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                <label class="btn btn-outline-warning" for="btncheck2">&#9733</label>
+                <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+                <label class="btn btn-outline-warning" for="btncheck3">&#9733</label>
+                <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+                <label class="btn btn-outline-warning" for="btncheck4">&#9733</label>
+                <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+                <label class="btn btn-outline-warning" for="btncheck5">&#9733</label>
+            </div>
+            <input type="text" class="form-control" placeholder="Any Reviews?" aria-label="Recipient's username"
+                aria-describedby="button-addon2">
+            <button class="btn btn-outline-warning" type="button" onclick="submitrate()"
+                id="button-addon2">Submit</button>
+        </div>
+        <div id="thankyoumsg" class="alert alert-success alert-success fade show" role="alert">
+            <strong>Thank you for rating us!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div id="fill3"></div>
+        <div id="sizechange">
+            <div id="buttongrid">
+                <div id="whowon">You Won</div>
+                <button id="a1" class="check" onclick="a1called()"></button>
+                <button id="a2" class="check" onclick="a2called()"></button>
+                <button id="a3" class="check" onclick="a3called()"></button>
+                <button id="b1" class="check" onclick="b1called()"></button>
+                <button id="b2" class="check" onclick="b2called()"></button>
+                <button id="b3" class="check" onclick="b3called()"></button>
+                <button id="c1" class="check" onclick="c1called()"></button>
+                <button id="c2" class="check" onclick="c2called()"></button>
+                <button id="c3" class="check" onclick="c3called()"></button>
+            </div>
+            <div id="scoredetails">
+                <div id="bigplay1" class="scoretype">Your Score: </div>
+                <div id="smallplay1" class="available">P: </div>
+                <div id="disp1" class="score">00</div>
+                <div id="bigplay2" class="scoretype">Computer's Score:</div>
+                <div id="smallplay2" class="available">C:</div>
+                <div id="disp2" class="score">00</div>
+                <div class="scoretype">Ties:</div>
+                <div class="available">Tie:</div>
+                <div id="disptie" class="score">00</div>
+                <button id="restart" onclick="restart()">Restart</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <script src="main.js"></script>
+        
+</body>
+
+</html>
