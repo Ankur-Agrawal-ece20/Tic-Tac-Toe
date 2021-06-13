@@ -798,7 +798,7 @@ function Compturn(){
         return;
     }
     let verify=1;
-    if(chance==3 || chance==11){
+    if(chance==3 || chance==12){
         if((arr[0]==arr[8] && arr[0]!=0) || (arr[2]==arr[6] && arr[2]!=0)){
             verify=0;
         }
