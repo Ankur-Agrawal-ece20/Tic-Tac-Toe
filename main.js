@@ -641,7 +641,7 @@ function clearall() {
     for (j = 0; j < 9; j++) {
         arr[j] = 0;
     }
-    if((chance==9 && whostart==1)|| (chance==0 && whostart==2)){
+    if(choose==1 && ((chance==9 && whostart==1)|| (chance==0 && whostart==2))){
         Compturn();
         console.log(arr);
         // console.log(arr1);
