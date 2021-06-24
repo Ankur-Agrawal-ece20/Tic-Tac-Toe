@@ -1,3 +1,4 @@
+
 function animate() {
     document.getElementById("progress").style.width = "75%";
 }
@@ -6,7 +7,7 @@ let player1 = "";
 let player2 = "";
 let whostart = 1;
 let xoro = 0;
-function reloadnow(){
+function reloadnow() {
     window.location.reload();
 }
 function p1start() {
@@ -46,7 +47,7 @@ function startinggame() {
     }
     else if (choose == 1) {
         let name = prompt("What's your name?", "Guest");
-        player1 = name 
+        player1 = name
         player2 = "Computer"
         document.getElementById("bigplay1").innerHTML = player1 + " Score:";
         document.getElementById("bigplay2").innerHTML = player2 + " Score:";
@@ -56,7 +57,7 @@ function startinggame() {
     else if (choose == 2) {
         let name1 = prompt("Enter name of player 1:", "Player1");
         let name2 = prompt("Enter name of player 2:", "Player2");
-        player1 = name1 
+        player1 = name1
         player2 = name2
         document.getElementById("bigplay1").innerHTML = player1 + " Score:";
         document.getElementById("bigplay2").innerHTML = player2 + " Score:";
@@ -69,7 +70,7 @@ function startinggame() {
         setTimeout(removemsg, 5000)
         whostart = 1;
     }
-    if (whostart == 2){
+    if (whostart == 2) {
         cpu();
     }
     let ele = document.getElementById("Starting");
@@ -385,29 +386,26 @@ function restart() {
 }
 let compdone = 0;
 function cpu() {
-    // console.log(choose);
-    // console.log(chance);
-    // console.log(arr);
-    if(compdone==1){
-        compdone=0;
+    if (choose == 1 && compdone == 1) {
+        compdone = 0;
         return;
     }
-    let prep1 = p1score ;
+    let prep1 = p1score;
     let prep2 = p2score;
     result();
     if (chance == 9) {
         // console.log("done");
-        if(prep1<p1score){
-            document.getElementById("whowon").innerHTML=player1+" Won!"
+        if (prep1 < p1score) {
+            document.getElementById("whowon").innerHTML = player1 + " Won!"
             document.getElementById("whowon").style.display = "block";
         }
-        else if(prep2<p2score){
-            document.getElementById("whowon").innerHTML=player2+" Won!"
+        else if (prep2 < p2score) {
+            document.getElementById("whowon").innerHTML = player2 + " Won!"
             document.getElementById("whowon").style.display = "block";
         }
-        else{
+        else {
             tiescore = tiescore + 1;
-            document.getElementById("whowon").innerHTML="Its a tie!"
+            document.getElementById("whowon").innerHTML = "Its a tie!"
             document.getElementById("whowon").style.display = "block";
             document.getElementById("disptie").innerHTML = tiescore;
         }
@@ -416,17 +414,17 @@ function cpu() {
     }
     if (chance >= 18) {
         // console.log("done");
-        if(prep1<p1score){
-            document.getElementById("whowon").innerHTML=player1+" Won!"
+        if (prep1 < p1score) {
+            document.getElementById("whowon").innerHTML = player1 + " Won!"
             document.getElementById("whowon").style.display = "block";
         }
-        else if(prep2<p2score){
-            document.getElementById("whowon").innerHTML=player2+" Won!"
+        else if (prep2 < p2score) {
+            document.getElementById("whowon").innerHTML = player2 + " Won!"
             document.getElementById("whowon").style.display = "block";
         }
-        else{
+        else {
             tiescore = tiescore + 1;
-            document.getElementById("whowon").innerHTML="Its a tie!"
+            document.getElementById("whowon").innerHTML = "Its a tie!"
             document.getElementById("disptie").innerHTML = tiescore;
             document.getElementById("whowon").style.display = "block";
         }
@@ -434,67 +432,58 @@ function cpu() {
         return;
     }
 
-    if(chance!=9 && chance!=18 && choose==1){
-        let i;
-        let arr1=[0,0,0,0,0,0,0,0,0];
-        for(i=0;i<9;i++){
-            arr1[i]=arr[i];
-        }
-        Compturn();
-        // console.log(arr);
-        // console.log(arr1);
-        compdone=1;
-        for(i=0;i<9;i++){
-            if(arr[i]!=arr1[i]){
-                arr[i]=0;
-                switch(i){
-                    case 0: 
-                        a1called();
-                        break;
-                    case 1: 
-                        a2called();
-                        break;
-                    case 2: 
-                        a3called();
-                        break;    
-                    case 3: 
-                        b1called();
-                        break;
-                    case 4: 
-                        b2called();
-                        break;
-                    case 5: 
-                        b3called();
-                        break;
-                    case 6: 
-                        c1called();
-                        break;
-                    case 7: 
-                        c2called();
-                        break;
-                    case 8:
-                        c3called();
-                        break;
-                    }
+    if (chance != 9 && chance != 18 && choose == 1) {
+        let i=-1;
+        i = bestmove(arr, 2) ;
+        compdone = 1;
+        if (i != -1) {
+            switch (i) {
+                case 0:
+                    a1called();
+                    break;
+                case 1:
+                    a2called();
+                    break;
+                case 2:
+                    a3called();
+                    break;
+                case 3:
+                    b1called();
+                    break;
+                case 4:
+                    b2called();
+                    break;
+                case 5:
+                    b3called();
+                    break;
+                case 6:
+                    c1called();
+                    break;
+                case 7:
+                    c2called();
+                    break;
+                case 8:
+                    c3called();
+                    break;
             }
         }
     }
-    prep1 = p1score ;
+    prep1 = p1score;
     prep2 = p2score;
     result();
     if (chance == 9) {
         // console.log("done");
-        if(prep1<p1score){
-            document.getElementById("whowon").innerHTML=player1+" Won!";
+        if (prep1 < p1score) {
+            document.getElementById("whowon").innerHTML = player1 + " Won!";
             document.getElementById("whowon").style.display = "block";
         }
-        else if(prep2<p2score){
-            document.getElementById("whowon").innerHTML=player2+" Won!";
+        else if (prep2 < p2score) {
+            document.getElementById("whowon").innerHTML = player2 + " Won!";
             document.getElementById("whowon").style.display = "block";
         }
-        else{
+        else {
             tiescore = tiescore + 1;
-            document.getElementById("whowon").innerHTML="Its a tie!"
+            document.getElementById("whowon").innerHTML = "Its a tie!"
             document.getElementById("whowon").style.display = "block";
             document.getElementById("disptie").innerHTML = tiescore;
         }
@@ -502,17 +491,17 @@ function cpu() {
     }
     if (chance >= 18) {
         // console.log("done");
-        if(prep1<p1score){
-            document.getElementById("whowon").innerHTML=player1+" Won!";
+        if (prep1 < p1score) {
+            document.getElementById("whowon").innerHTML = player1 + " Won!";
             document.getElementById("whowon").style.display = "block";
         }
-        else if(prep2<p2score){
-            document.getElementById("whowon").innerHTML=player2+" Won!";
+        else if (prep2 < p2score) {
+            document.getElementById("whowon").innerHTML = player2 + " Won!";
             document.getElementById("whowon").style.display = "block";
         }
-        else{
+        else {
             tiescore = tiescore + 1;
-            document.getElementById("whowon").innerHTML="Its a tie!"
+            document.getElementById("whowon").innerHTML = "Its a tie!"
             document.getElementById("whowon").style.display = "block";
             document.getElementById("disptie").innerHTML = tiescore;
         }
@@ -628,7 +617,7 @@ function result() {
 }
 
 function clearall() {
-    if (chance != 9) chance=0;
+    if (chance != 9) chance = 0;
     var ele = document.getElementsByClassName("check")
     document.getElementById("whowon").style.display = "none";
     // document.getElementsByClassName("check").style.background = "rgba(0, 0, 0, 0.637);";
@@ -641,188 +630,126 @@ function clearall() {
     for (j = 0; j < 9; j++) {
         arr[j] = 0;
     }
-    if(choose==1 && ((chance==9 && whostart==1)|| (chance==0 && whostart==2))){
-        Compturn();
-        console.log(arr);
-        // console.log(arr1);
-        compdone=1;
-        for(i=0;i<9;i++){
-            if(arr[i]!=0){
-                arr[i]=0;
-                switch(i){
-                    case 0: 
-                        a1called();
-                        break;
-                    case 1: 
-                        a2called();
-                        break;
-                    case 2: 
-                        a3called();
-                        break;    
-                    case 3: 
-                        b1called();
-                        break;
-                    case 4: 
-                        b2called();
-                        break;
-                    case 5: 
-                        b3called();
-                        break;
-                    case 6: 
-                        c1called();
-                        break;
-                    case 7: 
-                        c2called();
-                        break;
-                    case 8:
-                        c3called();
-                        break;
-                    }
+    if (choose == 1 && ((chance == 9 && whostart == 1) || (chance == 0 && whostart == 2))) {
+        let i;
+        i = bestmove(arr, 2) ;
+        console.log(i);
+            // i = bestmove(arr, 2);
+        // arr[i]=2;
+        compdone = 1;
+        if (i != -1) {
+            switch (i) {
+                case 0:
+                    a1called();
+                    break;
+                case 1:
+                    a2called();
+                    break;
+                case 2:
+                    a3called();
+                    break;
+                case 3:
+                    b1called();
+                    break;
+                case 4:
+                    b2called();
+                    break;
+                case 5:
+                    b3called();
+                    break;
+                case 6:
+                    c1called();
+                    break;
+                case 7:
+                    c2called();
+                    break;
+                case 8:
+                    c3called();
+                    break;
             }
         }
+    }
+}
+function moveleft(arr1){
+    for(let i=0;i<9;i++){
+        if(arr1[i]==0) return true;
+    }
+    return false;
+}
+
+function evaluate(arr1,l){
+    for(let i=0;i<3;i++){
+        if(arr1[i+0]==arr1[i+3] && arr1[i+3]==arr1[i+6]){
+            if(arr1[i+0]==l) return +10;
+            else if(arr1[i+0]!=0) return -10;
+        }
+    }
+    for(let i=0;i<3;i++){
+        if(arr1[3*i+0]==arr1[3*i+1] && arr1[3*i]==arr1[3*i+2]){
+            if(arr1[3*i+0]==l) return +10;
+            else if(arr1[3*i+0]!=0) return -10;
+        }
+    }
+    if(arr1[0]==arr1[4] && arr1[4]==arr1[8]){
+        if(arr1[0]==l) return +10;
+        else if(arr1[0]!=0) return -10;
+    }
+    if(arr1[2]==arr1[4] && arr1[4]==arr1[6]){
+        if(arr1[2]==l) return +10;
+        else if(arr1[2]!=0) return -10;
+    }
+    return 0;
+}
+
+
+function minimax(arr1,depth,isMax,l){
+    let score=evaluate(arr1,l);
+    if(score==10) return score;
+    else if(score==-10) return score;
+    if(!moveleft(arr1)) return 0;
+    if(isMax){
+        let best =-1000;
+        for(let i=0;i<9;i++){
+            if(arr1[i]==0){
+                arr1[i]=l;
+                best = Math.max(best, minimax(arr1,depth+1,!isMax,l));
+                arr1[i]=0;
+            }
+        }
+        return best;
+    }
+    else{
+        let best =1000;
+        for(let i=0;i<9;i++){
+            if(arr1[i]==0){
+                if(l==2) arr1[i]=1;
+                else arr1[i]=2;
+                best = Math.min(best, minimax(arr1,depth+1,!isMax,l));
+                arr1[i]=0;
+            }
+        }
+        return best;
     }
 }
 
-var row = [0, 0, 0];
-var dia= [0, 0];
-var col = [0, 0, 0];
-function checkrow(){
-    let i = 0;
-    for (i = 0; i < 9; i = i + 3) {
-        if ((arr[i + 0] == arr[i + 1] && arr[i + 0] != 0 && arr[i + 2] == 0) ||
-            (arr[i + 1] == arr[i + 2] && arr[i + 1] != 0 && arr[i + 0] == 0) ||
-            (arr[i + 0] == arr[i + 2]) && arr[i + 0] != 0 && arr[i + 1] == 0) {
-            row[i / 3] = 1;
-        }
+function bestmove(arr1,l){
+    let arr2=[];
+    for(let i=0;i<9;i++){
+        arr2[i]=arr1[i];
     }
-}
-function fillrow(i, l){
-    if (arr[i + 0] == 0) arr[i] = l;
-    else if (arr[i + 1] == 0) arr[i + 1] = l;
-    else if (arr[i + 2] == 0) arr[i + 2] = l;
-}
-function checkcolumn(){
-    let i = 0;
-    for (i = 0; i < 3; i = i + 1) {
-        if ((arr[i + 0] == arr[i + 3] && arr[i + 0] != 0 && arr[i + 6] == 0) ||
-            (arr[i + 3] == arr[i + 6] && arr[i + 3] != 0 && arr[i + 0] == 0) ||
-            (arr[i + 0] == arr[i + 6] && arr[i + 0] != 0 && arr[i + 3] == 0)) {
-            col[i] = 1;
-        }
-    }
-}
-function fillcol(i, l){
-    if (arr[i + 0] == 0) arr[i + 0] = l;
-    else if (arr[i + 3] == 0) arr[i + 3] = l;
-    else if (arr[i + 6] == 0) arr[i + 6] = l;
-}
-function checkdiagonals(){
-    if ((arr[0] == arr[4] && arr[0] != 0 && arr[8] == 0) ||
-        (arr[4] == arr[8] && arr[4] != 0 && arr[0] == 0) ||
-        (arr[0] == arr[8] && arr[0] != 0 && arr[4] == 0)) {
-        dia[0] = 1;
-    }
-    if ((arr[2] == arr[4] && arr[2] != 0 && arr[6] == 0) ||
-        (arr[4] == arr[6] && arr[4] != 0 && arr[2] == 0) ||
-        (arr[2] == arr[6] && arr[6] != 0 && arr[4] == 0)) {
-        dia[1] = 1;
-    }
-    // return;
-}
-function Compturn(){
-    let i = 0;
-    for (i = 0; i < 3; i++) {
-        row[i] = 0;
-        col[i] = 0;
-        dia[i % 2] = 0;
-    }
-    let l = 0;
-    if (whostart == 1) l = 2;
-    else l = 1;
-    checkrow();
-    checkcolumn();
-    checkdiagonals();
-    for (i = 0; i < 3; i++) {
-        if (row[i] == 1) {
-            if (arr[3 * i] == l || arr[3 * i + 1] == l) {
-                fillrow(3 * i, l);
-                return;
+    let bestval=-1000;
+    let ans=-1;
+    for(let i=0;i<9;i++){
+        if(arr2[i]==0){
+            arr2[i]=l;
+            let moveVal = minimax(arr2, 0, false,l);
+            arr2[i]=0;
+            if(moveVal>bestval){
+                bestval=moveVal;
+                ans=i;      
             }
-        }
-        if (col[i] == 1) {
-            if (arr[i] == l || arr[i + 3] == l) {
-                fillcol(i, l);
-                return;
-            }
+            // arr1[i]=0;
         }
     }
-    if (dia[0] == 1 && arr[0] == l) {
-        if (arr[0] == 0) arr[0] = l;
-        else if (arr[4] == 0) arr[4] = l;
-        else if (arr[8] == 0) arr[8] = l;
-        return;
-    }
-    if (dia[1] == 1 && arr[0] == l) {
-        if (arr[2] == 0) arr[2] = l;
-        else if (arr[4] == 0) arr[4] = l;
-        else if (arr[6] == 0) arr[6] = l;
-        return;
-    }
-    let l1;
-    if (l == 2) l1 = 1;
-    else l1 = 2;
-    for (i = 0; i < 3; i++) {
-        if (row[i] == 1) {
-            fillrow(3 * i, l);
-            return;
-        }
-        if (col[i] == 1) {
-            fillcol(i, l);
-            return;
-        }
-    }
-    if (dia[0] == 1) {
-        if (arr[0] == 0) arr[0] = l;
-        else if (arr[4] == 0) arr[4] = l;
-        else if (arr[8] == 0) arr[8] = l;
-        return;
-    }
-    if (dia[1] == 1) {
-        if (arr[2] == 0) arr[2] = l;
-        else if (arr[4] == 0) arr[4] = l;
-        else if (arr[6] == 0) arr[6] = l;
-        return;
-    }
-    if (arr[4] == 0) {
-        arr[4] = l;
-        return;
-    }
-    let verify=1;
-    if(chance==3 || chance==12){
-        if((arr[0]==arr[8] && arr[0]!=0) || (arr[2]==arr[6] && arr[2]!=0)){
-            verify=0;
-        }
-    }
-    if (arr[0] == 0 && verify) {
-        arr[0] = l;
-        return;
-    }
-    if (arr[2] == 0 && verify) {
-        arr[2] = l;
-        return;
-    }
-    if (arr[6] == 0 && verify) {
-        arr[6] = l;
-        return;
-    }
-    if (arr[8] == 0 && verify) {
-        arr[8] = l;
-        return;
-    }
-    for (i = 0; i < 9; i++) {
-        if (arr[i] == 0) {
-            arr[i] = l;
-            return;
-        }
-    }
+    return ans;
 }
