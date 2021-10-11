@@ -45,6 +45,7 @@ function startinggame() {
     }
     else if (choose == 1) {
         let name = prompt("What's your name?", "Guest");
+        if(name==null) return;
         player1 = name
         player2 = "Computer"
         document.getElementById("bigplay1").innerHTML = player1 + " Score:";
@@ -55,6 +56,7 @@ function startinggame() {
     else if (choose == 2) {
         let name1 = prompt("Enter name of player 1:", "Player1");
         let name2 = prompt("Enter name of player 2:", "Player2");
+        if(name1==null || name2==null) return;
         player1 = name1
         player2 = name2
         document.getElementById("bigplay1").innerHTML = player1 + " Score:";
