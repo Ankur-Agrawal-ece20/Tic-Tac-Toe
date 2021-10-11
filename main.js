@@ -35,9 +35,7 @@ function choose2play() {
     // console.log('clickedplay')
     choose = 2;
     document.getElementById("progress").style.width = "100%";
-    document.getElementById("play1").innerHTML = 'Player1';
-    document.getElementById("play2").innerHTML = 'Player2';
-    document.getElementById("extra1").style.display = "block";
+    document.getElementById("extra1").style.display = "none";
     document.getElementById("extra2").style.display = "block";
 }
 function startinggame() {
